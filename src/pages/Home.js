@@ -27,7 +27,7 @@ class Home extends React.Component {
   render() {
     return (
       <Layout>
-        <h1>Handpicked</h1>
+        <h1>Books</h1>
         <Row>
           {this.listBooks()}
         </Row>

@@ -12,18 +12,8 @@ function SideBar(props){
             <div className="content-navbar" >
                 <h1>Options</h1>
                 <ul className="overflow-navbar" >
-                    <Link to="/dashboard" ><li>Dashboard</li></Link>
-                    <Link to="/form" ><li>Forms</li></Link>
-                    <Link to="/dashboard" ><li>Dashboard</li></Link>
-                    <Link to="/form" ><li>Forms</li></Link>
-                    <Link to="/dashboard" ><li>Dashboard</li></Link>
-                    <Link to="/form" ><li>Forms</li></Link>
-                    <Link to="/dashboard" ><li>Dashboard</li></Link>
-                    <Link to="/form" ><li>Forms</li></Link>
-                    <Link to="/dashboard" ><li>Dashboard</li></Link>
-                    <Link to="/form" ><li>Forms</li></Link>
-                    <Link to="/dashboard" ><li>Dashboard</li></Link>
-                    <Link to="/form" ><li>Forms</li></Link>
+                    <Link to="/" ><li>Books</li></Link>
+                    <Link to="/authors" ><li>Authors</li></Link>
                 </ul>
             </div>
         </div>
