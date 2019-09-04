@@ -14,6 +14,16 @@ function SideBar(props){
                 <ul className="overflow-navbar" >
                     <Link to="/dashboard" ><li>Dashboard</li></Link>
                     <Link to="/form" ><li>Forms</li></Link>
+                    <Link to="/dashboard" ><li>Dashboard</li></Link>
+                    <Link to="/form" ><li>Forms</li></Link>
+                    <Link to="/dashboard" ><li>Dashboard</li></Link>
+                    <Link to="/form" ><li>Forms</li></Link>
+                    <Link to="/dashboard" ><li>Dashboard</li></Link>
+                    <Link to="/form" ><li>Forms</li></Link>
+                    <Link to="/dashboard" ><li>Dashboard</li></Link>
+                    <Link to="/form" ><li>Forms</li></Link>
+                    <Link to="/dashboard" ><li>Dashboard</li></Link>
+                    <Link to="/form" ><li>Forms</li></Link>
                 </ul>
             </div>
         </div>

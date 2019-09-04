@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import App from './App';
+import Home from './pages/Home';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const store = createStore(reducers,applyMiddleware(thunk));
 
 ReactDOM.render(<Provider store={store} >
                     <Router>
-                        <Route path="/" exact component={App} />
+                        <Route path="/" exact component={Home} />
                     </Router>
                 </Provider>, document.getElementById('root'));
 
