@@ -1,0 +1,128 @@
+.side-navbar{
+    height: 100vh;
+    background-color: #FFFFFF;
+    /* background-image: linear-gradient(to bottom, rgba(63, 49, 100, 0.85), rgba(63, 49, 100, 0.85)), url("../../assets/img/background-cloud.jpg"); */
+    width: 251px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    transition: 0.27s;
+    border-right: 1.5px solid #e9ebfc;
+}
+
+.content-navbar{
+    color: #ffffff;
+    overflow-y: auto;
+    height: calc(100vh - 110px);
+}
+
+.content-navbar a{
+    text-decoration: none;
+}
+
+/* width */
+.content-navbar::-webkit-scrollbar {
+    width: 4px;
+}
+  
+  /* Track */
+.content-navbar::-webkit-scrollbar-track {
+    background: transparent; 
+}
+  
+  /* Handle */
+.content-navbar::-webkit-scrollbar-thumb {
+    background:white;
+    border-radius: 10px; 
+} 
+
+.content-navbar h1{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-left: 35px;
+    color: #4A4A4A;
+}
+
+.content-navbar ul{
+    padding: 0px;
+    margin: 0px;
+    list-style:none;
+    margin-bottom: 30px;
+}
+
+.content-navbar ul li{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #9C9EB4;
+    padding-left: 35px;
+    font-size: 15px;
+}
+
+.content-navbar ul li:hover{
+    background-color: rgba(203, 189, 240, 0.5);
+    color: white;
+    border-left: 4px solid white;
+    padding-left: 31px;
+    cursor: pointer;
+}
+
+.logo-navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin-bottom: 30px;
+}
+
+.logo-navbar h1{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: 5px;
+}
+
+.logo-navbar img{
+    height: 160px;
+    width: 160px;
+}
+
+.icon-navbar{
+    margin-right: 15px;
+}
+
+
+.content-navbar .overflow-navbar{
+    overflow-y: auto;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 600px) {
+  .side-navbar.show{
+        width: 270px;
+   }
+
+   .side-navbar.show .logo-navbar{
+        display: flex;
+    }
+
+    .side-navbar.show .content-navbar{
+        display: block;
+    }
+
+   .side-navbar{
+        width: 0px; 
+   }
+
+   .side-navbar .logo-navbar{
+        display: none; 
+    }
+
+    .side-navbar .content-navbar{
+        display: none; 
+    }
+}
+
+

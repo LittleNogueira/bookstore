@@ -1,0 +1,24 @@
+.book{
+    width: 150px;
+}
+
+.book p{
+    margin: 0px;
+}
+
+.book .book-description{
+    margin-top: 9px;
+}
+
+.book .book-title{
+    font-size: 14px;
+    color: #3B5260;
+    margin-bottom: 4px;
+}
+
+.book .book-subtitle{
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #B9C6CE;
+}
