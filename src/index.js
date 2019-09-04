@@ -8,10 +8,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
+
 import sidebar from './utils/stores/sidebar';
+import books from './utils/stores/books';
+
 import { Provider } from 'react-redux';
 
-const reducers = combineReducers({sidebar});
+const reducers = combineReducers({sidebar,books});
 const store = createStore(reducers,applyMiddleware(thunk));
 
 ReactDOM.render(<Provider store={store} >

@@ -18,7 +18,7 @@ export default function Book(props){
 
     return(
         <div className="book" >
-            <img src={getImage()} alt="book" />
+            <img src={props.image} alt="book" />
             <div className="book-description" >
                 <h1 className="book-title" >{props.title}</h1>
                 <p className="book-subtitle" >{props.subtitle}</p>
