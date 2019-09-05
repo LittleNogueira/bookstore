@@ -5,9 +5,6 @@ import AuthorApi from '../../utils/api/author';
 import { Row, Col, Image, ButtonGroup, Button, Modal } from 'react-bootstrap';
 import FactoryImage from '../../utils/FactoryImage';
 import Book from '../../components/book/Book';
-import {connect} from 'react-redux';
-import AuthorService from '../../utils/services/author';
-import iziToast from 'izitoast';
 
 class Info extends React.Component {
 
@@ -74,6 +71,10 @@ class Info extends React.Component {
         this.setState({showModal:!this.state.showModal});
     }
 
+    deleteAuthor(){
+
+    }
+
     render() {
 
         const { author,showModal } = this.state;
@@ -133,20 +134,4 @@ class Info extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        deleteAuthor: (id) => {
-            dispatch(AuthorService.deleteAuthor(id));
-            // this.setState({showModal:false})
-            // iziToast.show({
-            //     title: 'Success!',
-            //     message: 'Author deleted successfully.',
-            //     theme: 'light',
-            //     color: 'green',
-            //     position: 'topRight'
-            // });
-        }
-    }
-}
-
-export default connect(null, mapDispatchToProps)(Info);
+export default Info;
