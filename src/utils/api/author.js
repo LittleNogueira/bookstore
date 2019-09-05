@@ -8,6 +8,10 @@ const AuthorApi = {
 
     getById: (id) => {
         return API.get(`/authors/${id}`);
+    },
+
+    getBooksByAuthor: (id) => {
+        return API.get(`/authors/${id}/books`);
     }
 
 }

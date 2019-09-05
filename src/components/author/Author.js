@@ -14,7 +14,7 @@ export default function Author(props) {
                     <p className="author-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt.</p>
                 </div>
                 <Link to={props.link} >
-                    <Button variant="info">More info</Button>
+                    <Button variant="outline-info">More info</Button>
                 </Link>
             </Card.Body>
         </Card>
