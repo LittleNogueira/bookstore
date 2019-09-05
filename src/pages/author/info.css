@@ -1,0 +1,30 @@
+.author-info img{
+    width: 320px;
+    height: 320px;
+}
+
+.author-info{
+    border-right: 1px solid #B9C6CE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.author-info .name{
+    margin-top: 20px;
+    font-size: 21px;
+}
+
+.author-info .description{
+    width: 80%;
+    margin-top: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #B9C6CE;
+    text-align: center;
+}
+
+.author-info .options{
+    width: 55%;
+}

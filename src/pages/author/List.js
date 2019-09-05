@@ -14,8 +14,8 @@ class List extends React.Component{
     listAuthors(){
         return this.props.authors.map(author => {
             return (
-                <Col key={author.id} xs="6" sm="6" md="4" lg="3" xl="3" >
-                    <Author />
+                <Col key={author.id} xs="12" sm="12" md="6" lg="4" xl="3" >
+                    <Author link={`/authors/${author.id}`} image={author.image} name={`${author.firstName} ${author.lastName}`} />
                 </Col>
             ); 
         });

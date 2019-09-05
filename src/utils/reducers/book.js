@@ -8,8 +8,8 @@ const images = importAll(require.context('../../assets/img/books/', false, /\.(p
 const getImage = (book) => {
     let index = book.id;
 
-    while(index > images.lenght){
-        index = index/images.lengh;
+    while(index > images.length){
+        index = index/images.length;
     }
 
     return images[index - 1];

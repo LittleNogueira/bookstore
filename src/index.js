@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import ListBook from './pages/book/List';
-import ListAuthor from './pages/author/List';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import { Provider } from 'react-redux';
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
-import sidebar from './utils/stores/sidebar';
-import books from './utils/stores/book';
-import authors from './utils/stores/author';
+import sidebar from './utils/reducers/sidebar';
+import books from './utils/reducers/book';
+import authors from './utils/reducers/author';
 
-
-import { Provider } from 'react-redux';
+import ListBook from './pages/book/List';
+import ListAuthor from './pages/author/List'
+import InfoAuthor from './pages/author/Info'
 
 const reducers = combineReducers({sidebar,books,authors});
 const store = createStore(reducers,applyMiddleware(thunk));
@@ -24,6 +23,7 @@ ReactDOM.render(<Provider store={store} >
                     <Router>
                         <Route path="/" exact component={ListBook} />
                         <Route path="/authors" exact component={ListAuthor} />
+                        <Route path="/authors/:id" exact component={InfoAuthor} />
                     </Router>
                 </Provider>, document.getElementById('root'));
 
