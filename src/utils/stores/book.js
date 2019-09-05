@@ -15,7 +15,7 @@ const getImage = (book) => {
     return images[index - 1];
 } 
 
-function books(state=[],action){
+function book(state=[],action){
 
     if(action.type === 'GET-ALL-BOOKS'){
         return action.books.map(book => {
@@ -27,4 +27,4 @@ function books(state=[],action){
 
 }
 
-export default books;
+export default book;

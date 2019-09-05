@@ -5,7 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import BookService from '../../utils/services/book';
 
-class Home extends React.Component {
+class List extends React.Component {
 
   componentDidMount(){
     this.props.getAllBook();
@@ -48,4 +48,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(List);

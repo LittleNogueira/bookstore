@@ -1,0 +1,44 @@
+.author{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.author-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.author img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.author .author-title{
+    font-size: 14px;
+    color: #3B5260;
+    margin-bottom: 4px;
+}
+
+.author .author-description{
+    margin-top: 13px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.author .author-subtitle{
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #B9C6CE;
+    text-align: center;
+}
