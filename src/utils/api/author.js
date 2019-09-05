@@ -12,6 +12,10 @@ const AuthorApi = {
 
     getBooksByAuthor: (id) => {
         return API.get(`/authors/${id}/books`);
+    },
+
+    delete: (id) => {
+        return API.delete(`/authors/${id}`);
     }
 
 }

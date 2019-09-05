@@ -10,5 +10,11 @@ export default function author(state=[],action){
         });
     }
 
+    if(action.type === 'DELETE-AUTHOR'){
+        return state.filter(author => {
+            return author.id !== action.id;
+        });
+    }
+
     return state;
 }

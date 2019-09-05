@@ -1,3 +1,5 @@
+@import url('../node_modules/izitoast/dist/css//iziToast.min.css');
+
 @font-face {
   font-family: 'Nunito', sans-serif;
   src: url(./assets/fonts/Nunito-Regular.ttf)format('ttf');

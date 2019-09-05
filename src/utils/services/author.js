@@ -1,5 +1,5 @@
 import AuthorApi from '../api/author';
-import {getAllAuthors} from '../actions/author';
+import {getAllAuthors,deleteAuthor} from '../actions/author';
 
 const AuthorService = {
 
@@ -9,6 +9,14 @@ const AuthorService = {
                 dispatch(getAllAuthors(res.data));
             })
         };
+    },
+
+    deleteAuthor: (id) => {
+        return dispatch => {
+            return AuthorApi.delete(id).then(res => {
+                dispatch(deleteAuthor(id));
+            });
+        }
     }
 
 };
