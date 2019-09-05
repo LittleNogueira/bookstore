@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Home from './pages/Home';
+import ListBook from './pages/book/List';
+import ListAuthor from './pages/author/List';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -19,7 +20,8 @@ const store = createStore(reducers,applyMiddleware(thunk));
 
 ReactDOM.render(<Provider store={store} >
                     <Router>
-                        <Route path="/" exact component={Home} />
+                        <Route path="/" exact component={ListBook} />
+                        <Route path="/authors" exact component={ListAuthor} />
                     </Router>
                 </Provider>, document.getElementById('root'));
 

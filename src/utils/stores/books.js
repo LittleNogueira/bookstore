@@ -6,8 +6,13 @@ const importAll = (r) => {
 const images = importAll(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
 
 const getImage = (book) => {
-    const random = Math.floor((Math.random() * (images.length) ) + 0);
-    return book.image ? book.image : images[random];
+    let index = book.id;
+
+    while(index > images.lenght){
+        index = index/images.lengh;
+    }
+
+    return images[index - 1];
 } 
 
 function books(state=[],action){

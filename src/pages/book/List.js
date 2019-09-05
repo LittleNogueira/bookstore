@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../layouts/store/Layout';
-import Book from '../components/book/Book';
+import Layout from '../../layouts/store/Layout';
+import Book from '../../components/book/Book';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import BookService from '../utils/services/book';
+import BookService from '../../utils/services/book';
 
 class Home extends React.Component {
 
