@@ -1,6 +1,6 @@
 .author-info img{
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
 }
 
 .author-info{
@@ -35,7 +35,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #B9C6CE;
+}
+
+.author-books{
+    height: 100%;
+    width: 100%;
 }
 
 .notification-dont-have-book  h1{

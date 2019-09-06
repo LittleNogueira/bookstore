@@ -2,10 +2,13 @@ import React from 'react';
 import './info.css';
 import Layout from '../../layouts/store/Layout';
 import AuthorApi from '../../utils/api/author';
-import { Row, Col, Image, ButtonGroup, Button, Modal } from 'react-bootstrap';
+import { Row, Col, Image, ButtonGroup, Button } from 'react-bootstrap';
 import FactoryImage from '../../utils/FactoryImage';
 import Book from '../../components/book/Book';
-
+import { Notyf } from 'notyf';
+import {Redirect} from 'react-router-dom';
+import Modal from '../../components/modal/Modal'; 
+ 
 class Info extends React.Component {
 
     constructor(props) {
@@ -14,10 +17,14 @@ class Info extends React.Component {
             author: {
                 books: []
             },
+            redirect: false,
+            showModal: false
         };
         
         this.factoryImageAuthor = new FactoryImage(require.context('../../assets/img/authors/', false, /\.(png|jpe?g|svg)$/));
         this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
+        this.notyf = new Notyf();
+        this.redirect = false;
     }
 
     componentDidMount() {
@@ -61,7 +68,7 @@ class Info extends React.Component {
 
     loadContent() {
         if (this.state.author.books.length) {
-            return (<Row>{this.listBooks()}</Row>);
+            return (<Row className="author-books" >{this.listBooks()}</Row>);
         } else {
             return this.dontHaveBooks();
         }
@@ -72,12 +79,20 @@ class Info extends React.Component {
     }
 
     deleteAuthor(){
-
+        this.showAndHiddenModal();
+        AuthorApi.delete(this.state.author.id).then(res => {
+            this.notyf.success('Author was successfully deleted.');
+            this.setState({redirect:true});
+        });
     }
 
     render() {
 
-        const { author,showModal } = this.state;
+        const { author,showModal,redirect } = this.state;
+
+        if(redirect){
+            return <Redirect to={{pathname: "/authors"}}/>
+        }
 
         return (
             <Layout>
@@ -93,8 +108,6 @@ class Info extends React.Component {
                                     Pellentesque imperdiet volutpat volutpat.
                                     Pellentesque eu metus diam. Maecenas feugiat in lorem sit amet vehicula.
                                     Pellentesque tempus odio leo, quis aliquam erat ultricies sed.
-                                    Quisque malesuada urna massa, posuere commodo orci elementum dignissim.
-                                    Maecenas luctus euismod iaculis. Suspendisse egestas dui sit amet placerat pretium.
                                 </p>
                                 <ButtonGroup className="mt-3 options">
                                     <Button variant="outline-primary" >Editar</Button>
@@ -108,26 +121,16 @@ class Info extends React.Component {
                         </Col>
                     </Row>
                 </div>
-                <Modal
-                    show={showModal}
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered>
-                    <Modal.Header>
-                        <Modal.Title id="contained-modal-title-vcenter">
-                            Are you sure?
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>
-                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                            consectetur ac, vestibulum at eros.
-                        </p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="success" onClick={() => this.props.deleteAuthor(author.id)} >Yes</Button>
-                        <Button variant="light" onClick={() => this.showAndHiddenModal()} >No</Button>
-                    </Modal.Footer>
+                <Modal  
+                    show={showModal} 
+                    title="Are you sure?" 
+                    actionCancel={this.showAndHiddenModal.bind(this)}
+                    actionConfirm={this.deleteAuthor.bind(this)}>
+                    <p>
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                        consectetur ac, vestibulum at eros.
+                    </p>
                 </Modal>
             </Layout>
         );

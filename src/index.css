@@ -1,4 +1,4 @@
-@import url('../node_modules/izitoast/dist/css//iziToast.min.css');
+@import url('../node_modules/notyf/notyf.min.css');
 
 @font-face {
   font-family: 'Nunito', sans-serif;
