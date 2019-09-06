@@ -1,14 +1,17 @@
 import React from 'react';
 import './info.css';
-import Layout from '../../layouts/store/Layout';
-import AuthorApi from '../../utils/api/author';
+
 import { Row, Col, Image, ButtonGroup, Button } from 'react-bootstrap';
-import FactoryImage from '../../utils/FactoryImage';
-import Book from '../../components/book/Book';
 import { Notyf } from 'notyf';
 import {Redirect} from 'react-router-dom';
+
+import Layout from '../../layouts/store/Layout';
+import AuthorApi from '../../utils/api/author';
+import FactoryImage from '../../utils/FactoryImage';
+import Book from '../../components/book/Book';
 import Modal from '../../components/modal/Modal'; 
- 
+import FormAuthor from './Form';
+
 class Info extends React.Component {
 
     constructor(props) {
@@ -18,7 +21,9 @@ class Info extends React.Component {
                 books: []
             },
             redirect: false,
-            showModal: false
+            showModalDelete: false,
+            showModalEdit:false,
+            disable: false
         };
         
         this.factoryImageAuthor = new FactoryImage(require.context('../../assets/img/authors/', false, /\.(png|jpe?g|svg)$/));
@@ -74,13 +79,18 @@ class Info extends React.Component {
         }
     }
 
-    showAndHiddenModal(){
-        this.setState({showModal:!this.state.showModal});
+    showAndHiddenModalDelete(){
+        this.setState({showModalDelete:!this.state.showModalDelete});
+    }
+
+    showAndHiddenModalEdit(){
+        this.setState({showModalEdit:!this.state.showModalEdit});
     }
 
     deleteAuthor(){
-        this.showAndHiddenModal();
+        this.setState({disable:true});
         AuthorApi.delete(this.state.author.id).then(res => {
+            this.showAndHiddenModalDelete();
             this.notyf.success('Author was successfully deleted.');
             this.setState({redirect:true});
         });
@@ -88,7 +98,7 @@ class Info extends React.Component {
 
     render() {
 
-        const { author,showModal,redirect } = this.state;
+        const { author,showModalDelete,showModalEdit,redirect,disable } = this.state;
 
         if(redirect){
             return <Redirect to={{pathname: "/authors"}}/>
@@ -110,8 +120,8 @@ class Info extends React.Component {
                                     Pellentesque tempus odio leo, quis aliquam erat ultricies sed.
                                 </p>
                                 <ButtonGroup className="mt-3 options">
-                                    <Button variant="outline-primary" >Editar</Button>
-                                    <Button variant="outline-danger" onClick={() => this.showAndHiddenModal()} >Excluir</Button>
+                                    <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Editar</Button>
+                                    <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Excluir</Button>
                                 </ButtonGroup>
                             </div>
                         </Col>
@@ -122,16 +132,18 @@ class Info extends React.Component {
                     </Row>
                 </div>
                 <Modal  
-                    show={showModal} 
+                    show={showModalDelete} 
                     title="Are you sure?" 
-                    actionCancel={this.showAndHiddenModal.bind(this)}
-                    actionConfirm={this.deleteAuthor.bind(this)}>
+                    actionCancel={this.showAndHiddenModalDelete.bind(this)}
+                    actionConfirm={this.deleteAuthor.bind(this)}
+                    disable={disable}>
                     <p>
                         Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
                         dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
                         consectetur ac, vestibulum at eros.
                     </p>
                 </Modal>
+                <FormAuthor actionCancel={this.showAndHiddenModalEdit.bind(this)} author={author} show={showModalEdit} />
             </Layout>
         );
     }

@@ -3,6 +3,10 @@ import { Button, Modal } from 'react-bootstrap';
 
 export default class ModalWrapper extends React.Component{
 
+    getDisableButton = () => {
+        return this.props.disable ? this.props.disable : false;
+    }
+
     render(){
 
         const {show,title,actionCancel,actionConfirm} = this.props;
@@ -21,8 +25,8 @@ export default class ModalWrapper extends React.Component{
                     {this.props.children}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="success" onClick={() => actionConfirm()} >Confirm</Button>
-                    <Button variant="light" onClick={() => actionCancel()}  >Cancel</Button>
+                    <Button disabled={this.getDisableButton()} variant="success" onClick={() => actionConfirm()} >Confirm</Button>
+                    <Button disabled={this.getDisableButton()} variant="light" onClick={() => actionCancel()}  >Cancel</Button>
                 </Modal.Footer>
             </Modal>
         );
