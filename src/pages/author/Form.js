@@ -12,7 +12,8 @@ export default class FormAuthor extends React.Component{
             author:{
                 firstName:'',
                 lastName:''
-            }
+            },
+            disable:false
         };
     }
 
@@ -35,7 +36,9 @@ export default class FormAuthor extends React.Component{
     }
 
     replaceOrCreate = () => {
+        this.setState({disable:true});
         AuthorApi.replaceOrCreate(this.state.author).then(res => {
+            this.setState({disable:false});
             this.props.actionConfirm(res);
         });
     }
@@ -43,10 +46,10 @@ export default class FormAuthor extends React.Component{
     render(){
         
         const {show,actionCancel} = this.props;
-        const {author} = this.state;
+        const {author,disable} = this.state;
 
         return(
-            <Modal actionConfirm={this.replaceOrCreate.bind(this)} actionCancel={actionCancel} show={show} title={this.getTitle()} >
+            <Modal disable={disable} actionConfirm={this.replaceOrCreate.bind(this)} actionCancel={actionCancel} show={show} title={this.getTitle()} >
                 
                 <Form>
                     <Form.Group controlId="firstName">
