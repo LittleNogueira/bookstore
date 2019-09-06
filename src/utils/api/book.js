@@ -8,6 +8,10 @@ const BookApi = {
 
     replaceOrCreate: (data) => {
         return API.post('/books/replaceOrCreate',data);
+    },
+
+    delete: (id) => {
+        return API.delete(`/books/${id}`);
     }
 
 }

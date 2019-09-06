@@ -1,28 +1,73 @@
 import React from 'react';
 import './book.css';
 
-export default function Book(props){
+import { ButtonGroup, Button } from 'react-bootstrap';
 
-    const importAll = (r) => {
-        return r.keys().map(r);
+import Modal from '../../components/modal/Modal';
+import FactoryImage from '../../utils/FactoryImage';
+import BookApi from '../../utils/api/book';
+import {Notyf} from 'notyf';
+
+class Book extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            showModalDelete:false,
+            disable:false
+        }
+        this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
+        this.notyf = new Notyf();
     }
 
-    const images = importAll(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
+    showAndHiddenModalDelete = () => {
+        this.setState({showModalDelete:!this.state.showModalDelete});
+    }
 
-    const getImage = () => {
-        const random = Math.floor((Math.random() * (images.length) ) + 0);
-        return props.image ? props.image : images[random];
-    } 
+    deleteBook = () => {
+        this.setState({disable:true});
+        BookApi.delete(this.props.book.id).then(res => {
+            this.showAndHiddenModalDelete();
+            this.notyf.success('Book deleted successfully.');
+        }).catch(res => {
+            this.notyf.error('Unexpected error.');
+        }).finally(() => {
+            this.setState({disable:false});
+        });
+    }
 
-    getImage();
+    render(){
 
-    return(
-        <div className="book" >
-            <img src={props.image} alt="book" />
-            <div className="book-description" >
-                <h1 className="book-title" >{props.title}</h1>
-                <p className="book-subtitle" >{props.subtitle}</p>
+        const {book} = this.props;
+        const {showModalDelete,disable} = this.state;
+
+        return(
+            <div className="book" >
+                <img src={this.factoryImageBook.getImage(book.id)} alt="book" />
+                <div className="book-description" >
+                    <h1 className="book-title" >{book.title}</h1>
+                    <p className="book-subtitle" >{book.isbn}</p>
+                </div>
+                <ButtonGroup size="sm" className="mt-3">
+                    <Button variant="outline-primary" >Edit</Button>
+                    <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Delete</Button>
+                </ButtonGroup>
+    
+                <Modal  
+                    show={showModalDelete} 
+                    title="Are you sure?" 
+                    actionCancel={this.showAndHiddenModalDelete.bind(this)}
+                    actionConfirm={this.deleteBook.bind(this)}
+                    disable={disable}>
+                    <p>
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                        consectetur ac, vestibulum at eros.
+                    </p>
+                </Modal>
             </div>
-        </div>
-    );
+        );
+    }
 }
+
+export default Book;

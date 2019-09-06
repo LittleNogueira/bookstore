@@ -59,9 +59,7 @@ class Info extends React.Component {
         return this.state.author.books.map(book => {
             return (
                 <Col key={book.id} xs="12" sm="12" md="6" lg="4" xl="3"  >
-                    <Book title={book.title}
-                        subtitle={book.isbn}
-                        image={this.factoryImageBook.getImage(book.id)} />
+                    <Book book={book} />
                 </Col>
             );
         });
@@ -135,8 +133,8 @@ class Info extends React.Component {
                                     Pellentesque tempus odio leo, quis aliquam erat ultricies sed.
                                 </p>
                                 <ButtonGroup className="mt-3 options">
-                                    <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Editar</Button>
-                                    <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Excluir</Button>
+                                    <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Edit</Button>
+                                    <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Delete</Button>
                                 </ButtonGroup>
                             </div>
                         </Col>

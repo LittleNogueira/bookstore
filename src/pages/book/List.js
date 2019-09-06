@@ -4,7 +4,6 @@ import { Row, Col, Button } from 'react-bootstrap';
 import {Notyf} from 'notyf';
 
 import BookApi from '../../utils/api/book';
-import FactoryImage from '../../utils/FactoryImage';
 import FormBook from './Form';
 import Layout from '../../layouts/store/Layout';
 import Book from '../../components/book/Book';
@@ -18,7 +17,6 @@ class List extends React.Component {
       books:[],
       showModal:false
     }
-    this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
     this.notyf = new Notyf();
   }
 
@@ -28,10 +26,7 @@ class List extends React.Component {
 
   loadBooks  = () => {
     BookApi.getAll().then(res => {
-      this.setState({books:res.data.map(book => {
-              return {...book,image:this.factoryImageBook.getImage(book.id)}
-          })
-      });
+      this.setState({books:res.data});
     });
   }
 
@@ -39,10 +34,7 @@ class List extends React.Component {
     return this.state.books.map(book => {
       return (
         <Col key={book.id} xs="6" sm="6" md="4" lg="3" xl="2" >
-          <Book
-            title={book.title}
-            subtitle={book.isbn}
-            image={book.image} />
+          <Book book={book} />
         </Col>
       );
     });
