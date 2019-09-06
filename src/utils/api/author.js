@@ -16,8 +16,11 @@ const AuthorApi = {
 
     delete: (id) => {
         return API.delete(`/authors/${id}`);
-    }
+    },
 
+    replaceOrCreate: (data) => {
+        return API.post('/authors/replaceOrCreate',data);
+    }
 }
 
 export default AuthorApi;

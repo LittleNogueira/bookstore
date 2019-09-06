@@ -33,6 +33,10 @@ class Info extends React.Component {
     }
 
     componentDidMount() {
+        this.loadAuthorWithBooks();
+    }
+    
+    loadAuthorWithBooks = () => {
         this.loadAuthor();
         this.loadBooks();
     }
@@ -96,6 +100,17 @@ class Info extends React.Component {
         });
     }
 
+    actionConfirmUpdate = (res) => {
+        this.showAndHiddenModalEdit();
+        if(res.status === 200){
+            this.notyf.success('Author updated successfully.');
+            this.loadAuthorWithBooks();
+        }else{
+            this.notyf.error('Unexpected error.');
+        }
+        
+    }
+
     render() {
 
         const { author,showModalDelete,showModalEdit,redirect,disable } = this.state;
@@ -143,7 +158,7 @@ class Info extends React.Component {
                         consectetur ac, vestibulum at eros.
                     </p>
                 </Modal>
-                <FormAuthor actionCancel={this.showAndHiddenModalEdit.bind(this)} author={author} show={showModalEdit} />
+                <FormAuthor actionConfirm={this.actionConfirmUpdate.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} author={author} show={showModalEdit} />
             </Layout>
         );
     }
