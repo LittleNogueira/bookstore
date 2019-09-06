@@ -26,18 +26,23 @@ export default class FormAuthor extends React.Component{
     }
 
     componentWillReceiveProps(){
-        const author = this.props.author; 
-        this.setState({author:{
-                id: author.id,
-                firstName:author.firstName,
-                lastName:author.lastName
-            }
-        });
+        if(this.props.author){
+            const author = this.props.author; 
+            this.setState({author:{
+                    id: author.id,
+                    firstName:author.firstName,
+                    lastName:author.lastName
+                }
+            });
+        }
     }
 
     replaceOrCreate = () => {
         this.setState({disable:true});
         AuthorApi.replaceOrCreate(this.state.author).then(res => {
+            this.setState({disable:false});
+            this.props.actionConfirm(res);
+        }).catch(res => {
             this.setState({disable:false});
             this.props.actionConfirm(res);
         });
