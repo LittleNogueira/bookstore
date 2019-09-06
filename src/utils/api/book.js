@@ -4,6 +4,10 @@ const BookApi = {
 
     getAll: () =>{
         return API.get('/books');
+    },
+
+    replaceOrCreate: (data) => {
+        return API.post('/books/replaceOrCreate',data);
     }
 
 }

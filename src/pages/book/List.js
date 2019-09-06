@@ -1,21 +1,32 @@
 import React from 'react';
-import Layout from '../../layouts/store/Layout';
-import Book from '../../components/book/Book';
-import { Row, Col } from 'react-bootstrap';
+
+import { Row, Col, Button } from 'react-bootstrap';
+import {Notyf} from 'notyf';
+
 import BookApi from '../../utils/api/book';
 import FactoryImage from '../../utils/FactoryImage';
+import FormBook from './Form';
+import Layout from '../../layouts/store/Layout';
+import Book from '../../components/book/Book';
+
 
 class List extends React.Component {
 
   constructor(props){
     super(props);
     this.state ={
-      books:[]
+      books:[],
+      showModal:false
     }
     this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
+    this.notyf = new Notyf();
   }
 
   componentDidMount(){
+    this.loadBooks(); 
+  }
+
+  loadBooks  = () => {
     BookApi.getAll().then(res => {
       this.setState({books:res.data.map(book => {
               return {...book,image:this.factoryImageBook.getImage(book.id)}
@@ -37,13 +48,34 @@ class List extends React.Component {
     });
   }
 
+  showAndHiddenModal = () => {
+    this.setState({showModal:!this.state.showModal});
+  }
+
+  callBackCreateBook = (res) => {
+    if(res.status === 200){
+      this.loadBooks();
+      this.showAndHiddenModal();
+      this.notyf.success('Book successfully created.');
+    }else{
+      this.notyf.success('Unexpected error.');
+    }
+  }
+
   render() {
+
+    const {showModal} = this.state;
+
     return (
       <Layout>
-        <h1>Books</h1>
+          <div className="top-list" >
+              <h1>Books</h1>
+              <Button variant="outline-primary" onClick={() => this.showAndHiddenModal()} >Create +</Button>
+          </div>
         <Row>
           {this.listBooks()}
         </Row>
+        <FormBook actionCofirm={this.callBackCreateBook.bind(this)} actionCancel={this.showAndHiddenModal.bind(this)} show={showModal} />
       </Layout>
     );
   }
