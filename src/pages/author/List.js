@@ -49,8 +49,8 @@ class List extends React.Component{
     };
 
     callBackCreate = (res) => {
-        this.showAndHiddenModal();
         if(res.status === 200){
+            this.showAndHiddenModal();
             this.notyf.success('Author successfully created.');
             this.loadAuthors();
         }else{
