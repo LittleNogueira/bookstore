@@ -2,7 +2,7 @@
 
 ## Sobre o projeto
 
-Bookstore é um projeto (Single Page Application) que utiliza React e Bootstrap 4, que consome a API Rest <a href="http://bibliapp.herokuapp.com/explorer" target="_blank" >Bibliapp</a>.
+Bookstore é um projeto (Single Page Application) que utiliza React e Bootstrap 4, que consome a API Rest <a href="http://bibliapp.herokuapp.com/explorer" target="_blank" >Bibliapp</a>, todo o sistema foi inspirado em um layout encontrado no site <a href="https://www.uplabs.com/posts/exploration-001-book-store-dashboard-icons" target="_blank" >UpLabs</a> para uma melhor interface de usuario. 
 
 ## Intruções para configuração
 
@@ -12,8 +12,6 @@ Requisitos
 - <a href="https://www.npmjs.com/get-npm" target="_blank" >NPM</a>
   
 Para subir todo o sistema basta seguir os passos abaixo.
-
-Instale 
 
 ```
 $ cd /camimho/do/projeto/bookstore
