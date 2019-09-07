@@ -6,12 +6,14 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import Modal from '../../components/modal/Modal';
 import FactoryImage from '../../utils/FactoryImage';
 import BookApi from '../../utils/api/book';
+import FormBook from '../../pages/book/Form';
 
 class Book extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
+            showModalEdit: false,   
             showModalDelete:false,
             disable:false
         }
@@ -20,6 +22,10 @@ class Book extends React.Component{
 
     showAndHiddenModalDelete = () => {
         this.setState({showModalDelete:!this.state.showModalDelete});
+    }
+
+    showAndHiddenModalEdit = () => {
+        this.setState({showModalEdit:!this.state.showModalEdit});
     }
 
     deleteBook = () => {
@@ -34,10 +40,17 @@ class Book extends React.Component{
         });
     }
 
+    callbackConfirm = (res) => {
+        if(res.status === 200){
+            this.showAndHiddenModalEdit();
+        }
+        this.props.callbackConfirm(res);
+    }
+
     render(){
 
         const {book} = this.props;
-        const {showModalDelete,disable} = this.state;
+        const {showModalDelete,disable,showModalEdit} = this.state;
 
         return(
             <div className="book" >
@@ -47,7 +60,7 @@ class Book extends React.Component{
                     <p className="book-subtitle" >{book.isbn}</p>
                 </div>
                 <ButtonGroup size="sm" className="mt-3">
-                    <Button variant="outline-primary" >Edit</Button>
+                    <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Edit</Button>
                     <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Delete</Button>
                 </ButtonGroup>
     
@@ -63,6 +76,8 @@ class Book extends React.Component{
                         consectetur ac, vestibulum at eros.
                     </p>
                 </Modal>
+
+                <FormBook actionConfirm={this.callbackConfirm.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} show={showModalEdit} book={book}  />
             </div>
         );
     }

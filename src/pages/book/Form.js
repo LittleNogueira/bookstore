@@ -26,6 +26,19 @@ class FormBook extends React.Component {
         this.loadAuthors();
     }
 
+    componentWillReceiveProps = () => {
+        if(this.props.book){
+            const book = this.props.book; 
+            this.setState({book:{
+                    id: book.id,
+                    title:book.title,
+                    isbn:book.isbn,
+                    authorId:book.authorId
+                }
+            });
+        }
+    }
+
     loadAuthors = () => {
         AuthorApi.getAll().then(res => {
             this.setState({authors:res.data});
@@ -39,11 +52,11 @@ class FormBook extends React.Component {
     replaceOrCreate = () => {
         this.setState({disable:true});
         BookApi.replaceOrCreate(this.state.book).then(res => {
-            this.setState({disable:false});
-            this.props.actionCofirm(res);
+            this.props.actionConfirm(res);
         }).catch(res => {
+            this.props.actionConfirm(res);
+        }).finally(() => {
             this.setState({disable:false});
-
         });
     }
 

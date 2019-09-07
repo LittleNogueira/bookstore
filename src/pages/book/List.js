@@ -34,7 +34,7 @@ class List extends React.Component {
     return this.state.books.map(book => {
       return (
         <Col key={book.id} xs="6" sm="6" md="4" lg="3" xl="2" >
-          <Book callbackDelete={this.callbackDeleteBook.bind(this)} book={book} />
+          <Book callbackConfirm={this.callbackEditBook.bind(this)} callbackDelete={this.callbackDeleteBook.bind(this)} book={book} />
         </Col>
       );
     });
@@ -58,6 +58,15 @@ class List extends React.Component {
     if(res.status === 200){
       this.loadBooks();
       this.notyf.success('Book successfully deleted.');
+    }else{
+      this.notyf.success('Unexpected error.');
+    }
+  }
+
+  callbackEditBook = (res) => {
+    if(res.status === 200){
+      this.loadBooks();
+      this.notyf.success('Book successfully edited.');
     }else{
       this.notyf.success('Unexpected error.');
     }

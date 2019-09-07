@@ -59,11 +59,20 @@ class Info extends React.Component {
         return this.state.author.books.map(book => {
             return (
                 <Col key={book.id} xs="12" sm="12" md="6" lg="4" xl="3"  >
-                    <Book callbackDelete={this.callbackDeleteBook.bind(this)} book={book} />
+                    <Book callbackConfirm={this.callbackEditBook.bind(this)} callbackDelete={this.callbackDeleteBook.bind(this)} book={book} />
                 </Col>
             );
         });
     }
+
+    callbackEditBook = (res) => {
+        if(res.status === 200){
+          this.loadBooks();
+          this.notyf.success('Book successfully edited.');
+        }else{
+          this.notyf.success('Unexpected error.');
+        }
+      }
 
     dontHaveBooks = () => {
         return (
