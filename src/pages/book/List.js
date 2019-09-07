@@ -85,7 +85,7 @@ class List extends React.Component {
         <Row>
           {this.listBooks()}
         </Row>
-        <FormBook actionCofirm={this.callBackCreateBook.bind(this)} actionCancel={this.showAndHiddenModal.bind(this)} show={showModal} />
+        <FormBook actionConfirm={this.callBackCreateBook.bind(this)} actionCancel={this.showAndHiddenModal.bind(this)} show={showModal} />
       </Layout>
     );
   }

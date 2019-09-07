@@ -43,6 +43,16 @@ class FormBook extends React.Component {
         }
     }
 
+    cleanForm = () => {
+        this.setState({
+            book:{
+                title:'',
+                isbn:'',
+                authorId:''
+            }
+        });
+    }
+
     loadAuthors = () => {
         AuthorApi.getAll().then(res => {
             this.setState({authors:res.data});
@@ -56,6 +66,7 @@ class FormBook extends React.Component {
     replaceOrCreate = () => {
         this.setState({disable:true});
         BookApi.replaceOrCreate(this.state.book).then(res => {
+            this.cleanForm();
             this.props.actionConfirm(res);
         }).catch(res => {
             this.props.actionConfirm(res);

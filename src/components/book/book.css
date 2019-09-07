@@ -10,7 +10,7 @@
 .book .book-description{
     margin-top: 9px;
     margin-left: 4px;
-    height: 30px;
+    min-height: 30px;
 }
 
 .book .book-title{

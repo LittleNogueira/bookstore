@@ -3,13 +3,13 @@ import './info.css';
 
 import { Row, Col, Image, ButtonGroup, Button } from 'react-bootstrap';
 import { Notyf } from 'notyf';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import Layout from '../../layouts/store/Layout';
 import AuthorApi from '../../utils/api/author';
 import FactoryImage from '../../utils/FactoryImage';
 import Book from '../../components/book/Book';
-import Modal from '../../components/modal/Modal'; 
+import Modal from '../../components/modal/Modal';
 import FormAuthor from './Form';
 import FormBooK from '../book/Form';
 
@@ -23,11 +23,11 @@ class Info extends React.Component {
             },
             redirect: false,
             showModalDelete: false,
-            showModalEdit:false,
-            showModalCreateBook:false,
+            showModalEdit: false,
+            showModalCreateBook: false,
             disable: false
         };
-        
+
         this.factoryImageAuthor = new FactoryImage(require.context('../../assets/img/authors/', false, /\.(png|jpe?g|svg)$/));
         this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
         this.notyf = new Notyf();
@@ -37,7 +37,7 @@ class Info extends React.Component {
     componentDidMount() {
         this.loadAuthorWithBooks();
     }
-    
+
     loadAuthorWithBooks = () => {
         this.loadAuthor();
         this.loadBooks();
@@ -60,7 +60,7 @@ class Info extends React.Component {
     listBooks() {
         return this.state.author.books.map(book => {
             return (
-                <Col key={book.id} xs="12" sm="12" md="6" lg="4" xl="3"  >
+                <Col key={book.id} xs="6" sm="6" md="6" lg="4" xl="4"  >
                     <Book callbackConfirm={this.callbackEditBook.bind(this)} callbackDelete={this.callbackDeleteBook.bind(this)} book={book} />
                 </Col>
             );
@@ -68,13 +68,13 @@ class Info extends React.Component {
     }
 
     callbackEditBook = (res) => {
-        if(res.status === 200){
-          this.loadBooks();
-          this.notyf.success('Book successfully edited.');
-        }else{
-          this.notyf.success('Unexpected error.');
+        if (res.status === 200) {
+            this.loadBooks();
+            this.notyf.success('Book successfully edited.');
+        } else {
+            this.notyf.success('Unexpected error.');
         }
-      }
+    }
 
     dontHaveBooks = () => {
         return (
@@ -92,63 +92,63 @@ class Info extends React.Component {
         }
     }
 
-    showAndHiddenModalDelete(){
-        this.setState({showModalDelete:!this.state.showModalDelete});
+    showAndHiddenModalDelete() {
+        this.setState({ showModalDelete: !this.state.showModalDelete });
     }
 
-    showAndHiddenModalEdit(){
-        this.setState({showModalEdit:!this.state.showModalEdit});
+    showAndHiddenModalEdit() {
+        this.setState({ showModalEdit: !this.state.showModalEdit });
     }
 
-    showAndHiddenCreateBook(){
-        this.setState({showModalCreateBook:!this.state.showModalCreateBook});
+    showAndHiddenCreateBook() {
+        this.setState({ showModalCreateBook: !this.state.showModalCreateBook });
     }
 
-    deleteAuthor(){
-        this.setState({disable:true});
+    deleteAuthor() {
+        this.setState({ disable: true });
         AuthorApi.delete(this.state.author.id).then(res => {
             this.showAndHiddenModalDelete();
             this.notyf.success('Author was successfully deleted.');
-            this.setState({redirect:true});
+            this.setState({ redirect: true });
         });
     }
 
     actionConfirmUpdate = (res) => {
         this.showAndHiddenModalEdit();
-        if(res.status === 200){
+        if (res.status === 200) {
             this.notyf.success('Author updated successfully.');
             this.loadAuthorWithBooks();
-        }else{
+        } else {
             this.notyf.error('Unexpected error.');
         }
-        
+
     }
 
     callbackDeleteBook = (res) => {
-        if(res.status === 200){
+        if (res.status === 200) {
             this.loadBooks();
             this.notyf.success('Book successfully deleted.');
-        }else{
+        } else {
             this.notyf.success('Unexpected error.');
         }
     }
 
     callbackCreateBook = (res) => {
-        if(res.status === 200){
+        if (res.status === 200) {
             this.showAndHiddenCreateBook();
             this.loadBooks();
             this.notyf.success('Book successfully deleted.');
-          }else{
+        } else {
             this.notyf.success('Unexpected error.');
-          }
+        }
     }
 
     render() {
 
-        const { author,showModalDelete,showModalEdit,redirect,disable,showModalCreateBook } = this.state;
+        const { author, showModalDelete, showModalEdit, redirect, disable, showModalCreateBook } = this.state;
 
-        if(redirect){
-            return <Redirect to={{pathname: "/authors"}}/>
+        if (redirect) {
+            return <Redirect to={{ pathname: "/authors" }} />
         }
 
         return (
@@ -156,7 +156,13 @@ class Info extends React.Component {
                 <div>
                     <Row>
                         <Col xs="12" sm="12" md="6" lg="5" xl="5"  >
-                            <h1>Author</h1>
+                            <div className="top-list" >
+                                <h1>Author</h1>
+                                <ButtonGroup>
+                                    <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Edit</Button>
+                                    <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Delete</Button>
+                                </ButtonGroup>
+                            </div>
                             <div className="author-info text-center" >
                                 <Image roundedCircle thumbnail src={author.image} />
                                 <h1 className="name" >{`${author.firstName} ${author.lastName}`}</h1>
@@ -166,10 +172,7 @@ class Info extends React.Component {
                                     Pellentesque eu metus diam. Maecenas feugiat in lorem sit amet vehicula.
                                     Pellentesque tempus odio leo, quis aliquam erat ultricies sed.
                                 </p>
-                                <ButtonGroup className="mt-3 options">
-                                    <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Edit</Button>
-                                    <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Delete</Button>
-                                </ButtonGroup>
+
                             </div>
                         </Col>
                         <Col xs="12" sm="12" md="6" lg="7" xl="7"  >
@@ -181,9 +184,9 @@ class Info extends React.Component {
                         </Col>
                     </Row>
                 </div>
-                <Modal  
-                    show={showModalDelete} 
-                    title="Are you sure?" 
+                <Modal
+                    show={showModalDelete}
+                    title="Are you sure?"
                     actionCancel={this.showAndHiddenModalDelete.bind(this)}
                     actionConfirm={this.deleteAuthor.bind(this)}
                     disable={disable}>
