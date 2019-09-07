@@ -46,3 +46,13 @@
     color: #B9C6CE;
     font-size: 30px;
 }
+
+@media (max-width: 600px) {
+    .author-info{
+        border: none;
+        padding-bottom: 50px;
+        border-bottom: 1px solid #B9C6CE;
+        margin-bottom: 30px;
+    }
+}
+

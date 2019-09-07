@@ -59,7 +59,7 @@ class Book extends React.Component{
                     <h1 className="book-title" >{book.title}</h1>
                     <p className="book-subtitle" >{book.isbn}</p>
                 </div>
-                <ButtonGroup size="sm" className="mt-3">
+                <ButtonGroup size="sm" className="mt-3 book-options">
                     <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Edit</Button>
                     <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Delete</Button>
                 </ButtonGroup>
