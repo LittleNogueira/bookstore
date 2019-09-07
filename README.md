@@ -4,6 +4,8 @@
 
 Bookstore é um projeto (Single Page Application) que utiliza React e Bootstrap 4, que consome a API Rest <a href="http://bibliapp.herokuapp.com/explorer" target="_blank" >Bibliapp</a>, todo o sistema foi inspirado em um layout encontrado no site <a href="https://www.uplabs.com/posts/exploration-001-book-store-dashboard-icons" target="_blank" >UpLabs</a> para uma melhor interface de usuario. 
 
+As imagens de livros e autores sao associadas automaticamente por um algoritmo, a partir do ID do objeto. 
+
 ## Intruções para configuração
 
 Requisitos
