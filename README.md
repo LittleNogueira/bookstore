@@ -1,68 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bookstore
 
-## Available Scripts
+## Sobre o projeto
 
-In the project directory, you can run:
+Bookstore é um projeto (Single Page Application) que utiliza React e Bootstrap 4, que consome a API Rest <a href="http://bibliapp.herokuapp.com/explorer" target="_blank" >Bibliapp</a>.
 
-### `npm start`
+## Intruções para configuração
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Requisitos
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- <a href="https://nodejs.org/en/" target="_blank" >Node<a/>
+- <a href="https://www.npmjs.com/get-npm" target="_blank" >NPM</a>
+  
+Para subir todo o sistema basta seguir os passos abaixo.
 
-### `npm test`
+Instale 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ cd /camimho/do/projeto/bookstore
+$ npm install
+$ npm start
+```
 
-### `npm run build`
+E acesse a url <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> e o aplicativo estara pronto pra uso.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Sobre as tecnologias
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### React
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O React (às vezes denominado React.js ou ReactJS) é uma biblioteca JavaScript de código aberto para criar interfaces de usuário. É mantido pelo Facebook, Instagram e uma comunidade de desenvolvedores individuais e outras empresas. De acordo com o serviço de análise de JavaScript Libscore, o React está sendo usado nos sites da Netflix, Imgur, Feedly, Airbnb, SeatGeek, HelloSign, Walmart e outros.
 
-### `npm run eject`
+#### NPM
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+NPM é o gerenciador de pacotes para Node.js . Foi criado em 2009 como um projeto de código aberto para ajudar os desenvolvedores de JavaScript a compartilhar facilmente módulos de código compactados.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Bootstrap
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Bootstrap é um framework web com código-fonte aberto para desenvolvimento de componentes de interface e front-end para sites e aplicações web usando HTML, CSS e JavaScript, baseado em modelos de design para a tipografia, melhorando a experiência do usuário em um site amigável e responsivo.
