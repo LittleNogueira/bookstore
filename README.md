@@ -19,7 +19,7 @@ $ npm install
 $ npm start
 ```
 
-E acesse a url <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> e o aplicativo estara pronto pra uso.
+E acesse a url <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> e o sistema estara pronto pra uso.
 
 ### Sobre as tecnologias
 
