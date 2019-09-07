@@ -6,53 +6,53 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import Modal from '../../components/modal/Modal';
 import FactoryImage from '../../utils/FactoryImage';
 import BookApi from '../../utils/api/book';
-import FormBook from '../../pages/book/Form';
+import FormBook from '../../pages/book/form/Form';
 
-class Book extends React.Component{
+class Book extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            showModalEdit: false,   
-            showModalDelete:false,
-            disable:false
+            showModalEdit: false,
+            showModalDelete: false,
+            disable: false
         }
         this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
     }
 
-    showAndHiddenModalDelete = () => {
-        this.setState({showModalDelete:!this.state.showModalDelete});
+    showAndHiddenModalDelete() {
+        this.setState({ showModalDelete: !this.state.showModalDelete });
     }
 
-    showAndHiddenModalEdit = () => {
-        this.setState({showModalEdit:!this.state.showModalEdit});
+    showAndHiddenModalEdit() {
+        this.setState({ showModalEdit: !this.state.showModalEdit });
     }
 
-    deleteBook = () => {
-        this.setState({disable:true});
+    deleteBook() {
+        this.setState({ disable: true });
         BookApi.delete(this.props.book.id).then(res => {
             this.showAndHiddenModalDelete();
             this.props.callbackDelete(res);
         }).catch(res => {
             this.props.callbackDelete(res);
         }).finally(() => {
-            this.setState({disable:false});
+            this.setState({ disable: false });
         });
     }
 
-    callbackConfirm = (res) => {
-        if(res.status === 200){
+    callbackConfirm(res) {
+        if (res.status === 200) {
             this.showAndHiddenModalEdit();
         }
         this.props.callbackConfirm(res);
     }
 
-    render(){
+    render() {
 
-        const {book} = this.props;
-        const {showModalDelete,disable,showModalEdit} = this.state;
+        const { book } = this.props;
+        const { showModalDelete, disable, showModalEdit } = this.state;
 
-        return(
+        return (
             <div className="book" >
                 <img src={this.factoryImageBook.getImage(book.id)} alt="book" />
                 <div className="book-description" >
@@ -63,10 +63,10 @@ class Book extends React.Component{
                     <Button variant="outline-primary" onClick={() => this.showAndHiddenModalEdit()} >Edit</Button>
                     <Button variant="outline-danger" onClick={() => this.showAndHiddenModalDelete()} >Delete</Button>
                 </ButtonGroup>
-    
-                <Modal  
-                    show={showModalDelete} 
-                    title="Are you sure?" 
+
+                <Modal
+                    show={showModalDelete}
+                    title="Are you sure?"
                     actionCancel={this.showAndHiddenModalDelete.bind(this)}
                     actionConfirm={this.deleteBook.bind(this)}
                     disable={disable}>
@@ -77,7 +77,7 @@ class Book extends React.Component{
                     </p>
                 </Modal>
 
-                <FormBook actionConfirm={this.callbackConfirm.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} show={showModalEdit} book={book}  />
+                <FormBook actionConfirm={this.callbackConfirm.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} show={showModalEdit} book={book} />
             </div>
         );
     }

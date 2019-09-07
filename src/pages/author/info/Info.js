@@ -5,13 +5,13 @@ import { Row, Col, Image, ButtonGroup, Button } from 'react-bootstrap';
 import { Notyf } from 'notyf';
 import { Redirect } from 'react-router-dom';
 
-import Layout from '../../layouts/store/Layout';
-import AuthorApi from '../../utils/api/author';
-import FactoryImage from '../../utils/FactoryImage';
-import Book from '../../components/book/Book';
-import Modal from '../../components/modal/Modal';
-import FormAuthor from './Form';
-import FormBooK from '../book/Form';
+import Layout from '../../../layouts/store/Layout';
+import AuthorApi from '../../../utils/api/author';
+import FactoryImage from '../../../utils/FactoryImage';
+import Book from '../../../components/book/Book';
+import Modal from '../../../components/modal/Modal';
+import FormAuthor from '../form/Form';
+import FormBooK from '../../book/form/Form';
 
 class Info extends React.Component {
 
@@ -28,8 +28,7 @@ class Info extends React.Component {
             disable: false
         };
 
-        this.factoryImageAuthor = new FactoryImage(require.context('../../assets/img/authors/', false, /\.(png|jpe?g|svg)$/));
-        this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
+        this.factoryImageAuthor = new FactoryImage(require.context('../../../assets/img/authors/', false, /\.(png|jpe?g|svg)$/));
         this.notyf = new Notyf();
         this.redirect = false;
     }
@@ -38,7 +37,7 @@ class Info extends React.Component {
         this.loadAuthorWithBooks();
     }
 
-    loadAuthorWithBooks = () => {
+    loadAuthorWithBooks() {
         this.loadAuthor();
         this.loadBooks();
     }
@@ -67,7 +66,7 @@ class Info extends React.Component {
         });
     }
 
-    callbackEditBook = (res) => {
+    callbackEditBook(res) {
         if (res.status === 200) {
             this.loadBooks();
             this.notyf.success('Book successfully edited.');
@@ -76,7 +75,7 @@ class Info extends React.Component {
         }
     }
 
-    dontHaveBooks = () => {
+    dontHaveBooks() {
         return (
             <div className="notification-dont-have-book" >
                 <h1>This author doesn't have any books</h1>
@@ -113,7 +112,7 @@ class Info extends React.Component {
         });
     }
 
-    actionConfirmUpdate = (res) => {
+    actionConfirmUpdate(res) {
         this.showAndHiddenModalEdit();
         if (res.status === 200) {
             this.notyf.success('Author updated successfully.');
@@ -124,7 +123,7 @@ class Info extends React.Component {
 
     }
 
-    callbackDeleteBook = (res) => {
+    callbackDeleteBook(res) {
         if (res.status === 200) {
             this.loadBooks();
             this.notyf.success('Book successfully deleted.');
@@ -133,7 +132,7 @@ class Info extends React.Component {
         }
     }
 
-    callbackCreateBook = (res) => {
+    callbackCreateBook(res) {
         if (res.status === 200) {
             this.showAndHiddenCreateBook();
             this.loadBooks();

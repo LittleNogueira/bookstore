@@ -1,17 +1,17 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-export default class ModalWrapper extends React.Component{
+export default class ModalWrapper extends React.Component {
 
-    getDisableButton = () => {
+    getDisableButton() {
         return this.props.disable ? this.props.disable : false;
     }
 
-    render(){
+    render() {
 
-        const {show,title,actionCancel,actionConfirm} = this.props;
+        const { show, title, actionCancel, actionConfirm } = this.props;
 
-        return(
+        return (
             <Modal
                 show={show}
                 aria-labelledby="contained-modal-title-vcenter"

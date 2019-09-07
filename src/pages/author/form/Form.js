@@ -1,8 +1,8 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
 
-import Modal from '../../components/modal/Modal';
-import AuthorApi from '../../utils/api/author';
+import Modal from '../../../components/modal/Modal';
+import AuthorApi from '../../../utils/api/author';
 
 export default class FormAuthor extends React.Component{
 
@@ -17,7 +17,7 @@ export default class FormAuthor extends React.Component{
         };
     }
 
-    getTitle = () => {
+    getTitle(){
         if(this.props.author){
             return 'Edit Author';
         }else{
@@ -25,7 +25,7 @@ export default class FormAuthor extends React.Component{
         }
     }
 
-    componentWillReceiveProps = () =>{
+    componentWillReceiveProps(){
         if(this.props.author){
             const author = this.props.author; 
             this.setState({author:{
@@ -37,7 +37,7 @@ export default class FormAuthor extends React.Component{
         }
     }
 
-    replaceOrCreate = () => {
+    replaceOrCreate(){
         this.setState({disable:true});
         AuthorApi.replaceOrCreate(this.state.author).then(res => {
             this.setState({disable:false});

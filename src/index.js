@@ -9,14 +9,12 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import sidebar from './utils/reducers/sidebar';
-import books from './utils/reducers/book';
-import authors from './utils/reducers/author';
 
-import ListBook from './pages/book/List';
-import ListAuthor from './pages/author/List'
-import InfoAuthor from './pages/author/Info'
+import ListBook from './pages/book/list/List';
+import ListAuthor from './pages/author/list/List'
+import InfoAuthor from './pages/author/info/Info'
 
-const reducers = combineReducers({sidebar,books,authors});
+const reducers = combineReducers({sidebar});
 const store = createStore(reducers,applyMiddleware(thunk));
 
 ReactDOM.render(<Provider store={store} >
