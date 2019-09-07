@@ -25,7 +25,7 @@ export default class FormAuthor extends React.Component{
         }
     }
 
-    componentWillReceiveProps = () => {
+    componentWillReceiveProps = () =>{
         if(this.props.author){
             const author = this.props.author; 
             this.setState({author:{

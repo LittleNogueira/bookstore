@@ -11,6 +11,7 @@ import FactoryImage from '../../utils/FactoryImage';
 import Book from '../../components/book/Book';
 import Modal from '../../components/modal/Modal'; 
 import FormAuthor from './Form';
+import FormBooK from '../book/Form';
 
 class Info extends React.Component {
 
@@ -23,6 +24,7 @@ class Info extends React.Component {
             redirect: false,
             showModalDelete: false,
             showModalEdit:false,
+            showModalCreateBook:false,
             disable: false
         };
         
@@ -98,6 +100,10 @@ class Info extends React.Component {
         this.setState({showModalEdit:!this.state.showModalEdit});
     }
 
+    showAndHiddenCreateBook(){
+        this.setState({showModalCreateBook:!this.state.showModalCreateBook});
+    }
+
     deleteAuthor(){
         this.setState({disable:true});
         AuthorApi.delete(this.state.author.id).then(res => {
@@ -127,9 +133,19 @@ class Info extends React.Component {
         }
     }
 
+    callbackCreateBook = (res) => {
+        if(res.status === 200){
+            this.showAndHiddenCreateBook();
+            this.loadBooks();
+            this.notyf.success('Book successfully deleted.');
+          }else{
+            this.notyf.success('Unexpected error.');
+          }
+    }
+
     render() {
 
-        const { author,showModalDelete,showModalEdit,redirect,disable } = this.state;
+        const { author,showModalDelete,showModalEdit,redirect,disable,showModalCreateBook } = this.state;
 
         if(redirect){
             return <Redirect to={{pathname: "/authors"}}/>
@@ -157,7 +173,10 @@ class Info extends React.Component {
                             </div>
                         </Col>
                         <Col xs="12" sm="12" md="6" lg="7" xl="7"  >
-                            <h1>Books</h1>
+                            <div className="top-list" >
+                                <h1>Books</h1>
+                                <Button variant="outline-primary" onClick={() => this.showAndHiddenCreateBook()} >Create +</Button>
+                            </div>
                             {this.loadContent()}
                         </Col>
                     </Row>
@@ -175,6 +194,7 @@ class Info extends React.Component {
                     </p>
                 </Modal>
                 <FormAuthor actionConfirm={this.actionConfirmUpdate.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} author={author} show={showModalEdit} />
+                <FormBooK actionConfirm={this.callbackCreateBook.bind(this)} authorId={author.id} show={showModalCreateBook} actionCancel={this.showAndHiddenCreateBook.bind(this)} />
             </Layout>
         );
     }

@@ -37,6 +37,10 @@ class FormBook extends React.Component {
                 }
             });
         }
+
+        if(this.props.authorId){
+            this.setState({book:{...this.state.book,authorId:this.props.authorId} });
+        }
     }
 
     loadAuthors = () => {
