@@ -17,14 +17,6 @@ export default class FormAuthor extends React.Component{
         };
     }
 
-    getTitle(){
-        if(this.props.author){
-            return 'Edit Author';
-        }else{
-            return 'Create Author';
-        }
-    }
-
     componentWillReceiveProps(){
         if(this.props.author){
             const author = this.props.author; 
@@ -37,7 +29,16 @@ export default class FormAuthor extends React.Component{
         }
     }
 
-    replaceOrCreate(){
+
+    getTitle = () =>{
+        if(this.props.author){
+            return 'Edit Author';
+        }else{
+            return 'Create Author';
+        }
+    }
+
+    replaceOrCreate = () => {
         this.setState({disable:true});
         AuthorApi.replaceOrCreate(this.state.author).then(res => {
             this.setState({disable:false});

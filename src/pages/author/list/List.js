@@ -25,7 +25,11 @@ class List extends React.Component {
         this.loadAuthors();
     };
 
-    loadAuthors() {
+    showAndHiddenModal = () => {
+        this.setState({ showModal: !this.state.showModal });
+    };
+
+    loadAuthors = () => {
         AuthorApi.getAll().then(res => {
             this.setState({
                 authors: res.data.map(author => {
@@ -35,7 +39,7 @@ class List extends React.Component {
         });
     };
 
-    listAuthors() {
+    listAuthors = () => {
         return this.state.authors.map(author => {
             return (
                 <Col key={author.id} xs="12" sm="12" md="6" lg="4" xl="3" >
@@ -45,11 +49,7 @@ class List extends React.Component {
         });
     };
 
-    showAndHiddenModal() {
-        this.setState({ showModal: !this.state.showModal });
-    };
-
-    callbackCreate(res) {
+    callbackCreate = (res) => {
         if (res.status === 200) {
             this.showAndHiddenModal();
             this.notyf.success('Author successfully created.');

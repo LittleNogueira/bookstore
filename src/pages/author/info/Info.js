@@ -37,26 +37,26 @@ class Info extends React.Component {
         this.loadAuthorWithBooks();
     }
 
-    loadAuthorWithBooks() {
+    loadAuthorWithBooks = () => {
         this.loadAuthor();
         this.loadBooks();
     }
 
-    loadAuthor() {
+    loadAuthor = () => {
         AuthorApi.getById(this.props.match.params.id).then(res => {
             let books = this.state.author.books;
             this.setState({ author: { ...res.data, image: this.factoryImageAuthor.getImage(res.data.id), books } })
         });
     }
 
-    loadBooks() {
+    loadBooks = () => {
         AuthorApi.getBooksByAuthor(this.props.match.params.id).then(res => {
             let author = this.state.author;
             this.setState({ author: { ...author, books: res.data } });
         });
     }
 
-    listBooks() {
+    listBooks = () => {
         return this.state.author.books.map(book => {
             return (
                 <Col key={book.id} xs="6" sm="6" md="6" lg="4" xl="4"  >
@@ -66,7 +66,7 @@ class Info extends React.Component {
         });
     }
 
-    callbackEditBook(res) {
+    callbackEditBook = (res) => {
         if (res.status === 200) {
             this.loadBooks();
             this.notyf.success('Book successfully edited.');
@@ -75,7 +75,7 @@ class Info extends React.Component {
         }
     }
 
-    dontHaveBooks() {
+    dontHaveBooks = () => {
         return (
             <div className="notification-dont-have-book" >
                 <h1>This author doesn't have any books</h1>
@@ -83,7 +83,7 @@ class Info extends React.Component {
         );
     }
 
-    loadContent() {
+    loadContent = () => {
         if (this.state.author.books.length) {
             return (<Row className="author-books" >{this.listBooks()}</Row>);
         } else {
@@ -91,19 +91,19 @@ class Info extends React.Component {
         }
     }
 
-    showAndHiddenModalDelete() {
+    showAndHiddenModalDelete = () => {
         this.setState({ showModalDelete: !this.state.showModalDelete });
     }
 
-    showAndHiddenModalEdit() {
+    showAndHiddenModalEdit = () => {
         this.setState({ showModalEdit: !this.state.showModalEdit });
     }
 
-    showAndHiddenCreateBook() {
+    showAndHiddenCreateBook = () => {
         this.setState({ showModalCreateBook: !this.state.showModalCreateBook });
     }
 
-    deleteAuthor() {
+    deleteAuthor = () => {
         this.setState({ disable: true });
         AuthorApi.delete(this.state.author.id).then(res => {
             this.showAndHiddenModalDelete();
@@ -112,7 +112,7 @@ class Info extends React.Component {
         });
     }
 
-    actionConfirmUpdate(res) {
+    actionConfirmUpdate = (res) => {
         this.showAndHiddenModalEdit();
         if (res.status === 200) {
             this.notyf.success('Author updated successfully.');
@@ -123,22 +123,22 @@ class Info extends React.Component {
 
     }
 
-    callbackDeleteBook(res) {
+    callbackDeleteBook = (res) => {
         if (res.status === 200) {
             this.loadBooks();
             this.notyf.success('Book successfully deleted.');
         } else {
-            this.notyf.success('Unexpected error.');
+            this.notyf.error('Unexpected error.');
         }
     }
 
-    callbackCreateBook(res) {
+    callbackCreateBook = (res) => {
         if (res.status === 200) {
             this.showAndHiddenCreateBook();
             this.loadBooks();
             this.notyf.success('Book successfully deleted.');
         } else {
-            this.notyf.success('Unexpected error.');
+            this.notyf.error('Unexpected error.');
         }
     }
 

@@ -24,13 +24,13 @@ class List extends React.Component {
     this.loadBooks();
   }
 
-  loadBooks() {
+  loadBooks = () => {
     BookApi.getAll().then(res => {
       this.setState({ books: res.data });
     });
   }
 
-  listBooks() {
+  listBooks = () => {
     return this.state.books.map(book => {
       return (
         <Col key={book.id} xs="6" sm="6" md="4" lg="3" xl="2" >
@@ -40,11 +40,11 @@ class List extends React.Component {
     });
   }
 
-  showAndHiddenModal() {
+  showAndHiddenModal = () => {
     this.setState({ showModal: !this.state.showModal });
   }
 
-  callBackCreateBook(res) {
+  callBackCreateBook = (res) => {
     if (res.status === 200) {
       this.loadBooks();
       this.showAndHiddenModal();
@@ -54,7 +54,7 @@ class List extends React.Component {
     }
   }
 
-  callbackDeleteBook(res) {
+  callbackDeleteBook = (res) => {
     if (res.status === 200) {
       this.loadBooks();
       this.notyf.success('Book successfully deleted.');
@@ -63,7 +63,7 @@ class List extends React.Component {
     }
   }
 
-  callbackEditBook(res) {
+  callbackEditBook = (res) => {
     if (res.status === 200) {
       this.loadBooks();
       this.notyf.success('Book successfully edited.');

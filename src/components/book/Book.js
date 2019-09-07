@@ -20,15 +20,15 @@ class Book extends React.Component {
         this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
     }
 
-    showAndHiddenModalDelete() {
+    showAndHiddenModalDelete = () => {
         this.setState({ showModalDelete: !this.state.showModalDelete });
     }
 
-    showAndHiddenModalEdit() {
+    showAndHiddenModalEdit = () => {
         this.setState({ showModalEdit: !this.state.showModalEdit });
     }
 
-    deleteBook() {
+    deleteBook = () => {
         this.setState({ disable: true });
         BookApi.delete(this.props.book.id).then(res => {
             this.showAndHiddenModalDelete();
@@ -40,7 +40,7 @@ class Book extends React.Component {
         });
     }
 
-    callbackConfirm(res) {
+    callbackConfirm = (res) => {
         if (res.status === 200) {
             this.showAndHiddenModalEdit();
         }

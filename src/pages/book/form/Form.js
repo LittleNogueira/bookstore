@@ -44,7 +44,7 @@ class FormBook extends React.Component {
         }
     }
 
-    cleanForm() {
+    cleanForm = () => {
         this.setState({
             book: {
                 title: '',
@@ -54,17 +54,17 @@ class FormBook extends React.Component {
         });
     }
 
-    loadAuthors() {
+    loadAuthors = () => {
         AuthorApi.getAll().then(res => {
             this.setState({ authors: res.data });
         })
     }
 
-    getTitle() {
+    getTitle = () => {
         return this.props.book ? 'Edit Book' : 'Create Book';
     }
 
-    replaceOrCreate() {
+    replaceOrCreate = () => {
         this.setState({ disable: true });
         BookApi.replaceOrCreate(this.state.book).then(res => {
             this.cleanForm();
@@ -76,7 +76,7 @@ class FormBook extends React.Component {
         });
     }
 
-    getOptionsAuthors() {
+    getOptionsAuthors = () => {
         return this.state.authors.map(author => {
             return (<option key={author.id} value={author.id} >{`${author.firstName} ${author.lastName}`}</option>);
         });
@@ -85,10 +85,10 @@ class FormBook extends React.Component {
     render() {
 
         const { show, actionCancel } = this.props;
-        const { book } = this.state;
+        const { book,disable } = this.state;
 
         return (
-            <Modal actionConfirm={this.replaceOrCreate} actionCancel={actionCancel} show={show} title={this.getTitle()}>
+            <Modal disable={disable} actionConfirm={this.replaceOrCreate} actionCancel={actionCancel} show={show} title={this.getTitle()}>
                 <Form>
                     <Form.Group controlId="title">
                         <Form.Label>Title</Form.Label>

@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 export default class ModalWrapper extends React.Component {
 
-    getDisableButton() {
+    getDisableButton = () => {
         return this.props.disable ? this.props.disable : false;
     }
 
