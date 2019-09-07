@@ -59,7 +59,7 @@ class Info extends React.Component {
         return this.state.author.books.map(book => {
             return (
                 <Col key={book.id} xs="12" sm="12" md="6" lg="4" xl="3"  >
-                    <Book book={book} />
+                    <Book callbackDelete={this.callbackDeleteBook.bind(this)} book={book} />
                 </Col>
             );
         });
@@ -107,6 +107,15 @@ class Info extends React.Component {
             this.notyf.error('Unexpected error.');
         }
         
+    }
+
+    callbackDeleteBook = (res) => {
+        if(res.status === 200){
+            this.loadBooks();
+            this.notyf.success('Book successfully deleted.');
+        }else{
+            this.notyf.success('Unexpected error.');
+        }
     }
 
     render() {

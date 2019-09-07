@@ -6,7 +6,6 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import Modal from '../../components/modal/Modal';
 import FactoryImage from '../../utils/FactoryImage';
 import BookApi from '../../utils/api/book';
-import {Notyf} from 'notyf';
 
 class Book extends React.Component{
 
@@ -17,7 +16,6 @@ class Book extends React.Component{
             disable:false
         }
         this.factoryImageBook = new FactoryImage(require.context('../../assets/img/books/', false, /\.(png|jpe?g|svg)$/));
-        this.notyf = new Notyf();
     }
 
     showAndHiddenModalDelete = () => {
@@ -28,9 +26,9 @@ class Book extends React.Component{
         this.setState({disable:true});
         BookApi.delete(this.props.book.id).then(res => {
             this.showAndHiddenModalDelete();
-            this.notyf.success('Book deleted successfully.');
+            this.props.callbackDelete(res);
         }).catch(res => {
-            this.notyf.error('Unexpected error.');
+            this.props.callbackDelete(res);
         }).finally(() => {
             this.setState({disable:false});
         });
