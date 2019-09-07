@@ -42,10 +42,10 @@ export default class FormAuthor extends React.Component{
         this.setState({disable:true});
         AuthorApi.replaceOrCreate(this.state.author).then(res => {
             this.setState({disable:false});
-            this.props.actionConfirm(res);
+            this.props.callbackConfirm(res);
         }).catch(res => {
             this.setState({disable:false});
-            this.props.actionConfirm(res);
+            this.props.callbackConfirm(res);
         });
     }
 

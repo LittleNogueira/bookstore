@@ -112,7 +112,7 @@ class Info extends React.Component {
         });
     }
 
-    actionConfirmUpdate = (res) => {
+    callbackUpdateAuthor = (res) => {
         this.showAndHiddenModalEdit();
         if (res.status === 200) {
             this.notyf.success('Author updated successfully.');
@@ -195,8 +195,8 @@ class Info extends React.Component {
                         consectetur ac, vestibulum at eros.
                     </p>
                 </Modal>
-                <FormAuthor actionConfirm={this.actionConfirmUpdate.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} author={author} show={showModalEdit} />
-                <FormBooK actionConfirm={this.callbackCreateBook.bind(this)} authorId={author.id} show={showModalCreateBook} actionCancel={this.showAndHiddenCreateBook.bind(this)} />
+                <FormAuthor callbackConfirm={this.callbackUpdateAuthor.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} author={author} show={showModalEdit} />
+                <FormBooK callbackConfirm={this.callbackCreateBook.bind(this)} authorId={author.id} show={showModalCreateBook} actionCancel={this.showAndHiddenCreateBook.bind(this)} />
             </Layout>
         );
     }

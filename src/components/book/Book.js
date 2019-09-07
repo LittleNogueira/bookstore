@@ -77,7 +77,7 @@ class Book extends React.Component {
                     </p>
                 </Modal>
 
-                <FormBook actionConfirm={this.callbackConfirm.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} show={showModalEdit} book={book} />
+                <FormBook callbackConfirm={this.callbackConfirm.bind(this)} actionCancel={this.showAndHiddenModalEdit.bind(this)} show={showModalEdit} book={book} />
             </div>
         );
     }

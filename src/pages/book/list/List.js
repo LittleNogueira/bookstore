@@ -44,7 +44,7 @@ class List extends React.Component {
     this.setState({ showModal: !this.state.showModal });
   }
 
-  callBackCreateBook = (res) => {
+  callbackCreateBook = (res) => {
     if (res.status === 200) {
       this.loadBooks();
       this.showAndHiddenModal();
@@ -85,7 +85,7 @@ class List extends React.Component {
         <Row>
           {this.listBooks()}
         </Row>
-        <FormBook actionConfirm={this.callBackCreateBook.bind(this)} actionCancel={this.showAndHiddenModal.bind(this)} show={showModal} />
+        <FormBook callbackConfirm={this.callbackCreateBook.bind(this)} actionCancel={this.showAndHiddenModal.bind(this)} show={showModal} />
       </Layout>
     );
   }

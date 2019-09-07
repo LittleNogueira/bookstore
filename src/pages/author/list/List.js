@@ -72,7 +72,7 @@ class List extends React.Component {
                 <Row>
                     {this.listAuthors()}
                 </Row>
-                <FormAuthor actionConfirm={this.callbackCreate.bind(this)} actionCancel={this.showAndHiddenModal.bind(this)} show={showModal} />
+                <FormAuthor callbackConfirm={this.callbackCreate.bind(this)} actionCancel={this.showAndHiddenModal.bind(this)} show={showModal} />
             </Layout>
         );
     }

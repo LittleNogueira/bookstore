@@ -68,9 +68,9 @@ class FormBook extends React.Component {
         this.setState({ disable: true });
         BookApi.replaceOrCreate(this.state.book).then(res => {
             this.cleanForm();
-            this.props.actionConfirm(res);
+            this.props.callbackConfirm(res);
         }).catch(res => {
-            this.props.actionConfirm(res);
+            this.props.callbackConfirm(res);
         }).finally(() => {
             this.setState({ disable: false });
         });
@@ -100,7 +100,7 @@ class FormBook extends React.Component {
                         <Form.Control value={book.isbn} onChange={(e) => this.setState({ book: { ...book, isbn: e.target.value } })} type="text" />
                     </Form.Group>
 
-                    <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Group controlId="authors">
                         <Form.Label>Author</Form.Label>
                         <Form.Control onChange={(e) => this.setState({ book: { ...book, authorId: e.target.value } })} value={book.authorId} as="select">
                             <option value={null} >Unknown</option>
