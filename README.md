@@ -3,7 +3,7 @@
 
 ## About the project
 
-Bookstore is a project (single page application) that uses React and Bootstrap 4, which consumes a Rest API <a href="http://bibliapp.herokuapp.com/explorer" target="_blank"> Bibliapp </ a>, the entire system was inspired by a layout found at <a href="https://www.uplabs.com/posts/exploration-001-book-store-dashboard-icons" target="_blank"> UpLabs </ a> for a better user interface.
+Bookstore is a project (single page application) that uses React and Bootstrap 4, which consumes a Rest API <a href="http://bibliapp.herokuapp.com/explorer" target="_blank"> Bibliapp </a>, the entire system was inspired by a layout found at <a href="https://www.uplabs.com/posts/exploration-001-book-store-dashboard-icons" target="_blank"> UpLabs </a> for a better user interface.
 
 How images of books and authors are automatically selected by an algorithm from the object ID.
 
