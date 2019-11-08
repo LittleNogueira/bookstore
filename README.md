@@ -16,11 +16,11 @@ Requirements
 
 To get the whole system up, just follow the steps below.
 
-`` ``
+```
 $ cd /path/bookstore/
 $ npm installation
 $ npm start
-`` ``
+```
 
 And go to a URL <a href="http://localhost:3000" target="_blank"> http: // localhost: 3000 </a> and the system is ready for use.
 
