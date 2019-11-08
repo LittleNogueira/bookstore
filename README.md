@@ -1,38 +1,39 @@
+
 # Bookstore
 
-## Sobre o projeto
+## About the project
 
-Bookstore é um projeto (Single Page Application) que utiliza React e Bootstrap 4, que consome a API Rest <a href="http://bibliapp.herokuapp.com/explorer" target="_blank" >Bibliapp</a>, todo o sistema foi inspirado em um layout encontrado no site <a href="https://www.uplabs.com/posts/exploration-001-book-store-dashboard-icons" target="_blank" >UpLabs</a> para uma melhor interface de usuario. 
+Bookstore is a project (single page application) that uses React and Bootstrap 4, which consumes a Rest API <a href="http://bibliapp.herokuapp.com/explorer" target="_blank"> Bibliapp </ a>, the entire system was inspired by a layout found at <a href="https://www.uplabs.com/posts/exploration-001-book-store-dashboard-icons" target="_blank"> UpLabs </ a> for a better user interface.
 
-As imagens de livros e autores sao associadas automaticamente por um algoritmo, a partir do ID do objeto. 
+How images of books and authors are automatically selected by an algorithm from the object ID.
 
-## Intruções para configuração
+## Setup Instructions
 
-Requisitos
+Requirements
 
-- <a href="https://nodejs.org/en/" target="_blank" >Node<a/>
-- <a href="https://www.npmjs.com/get-npm" target="_blank" >NPM</a>
-  
-Para subir todo o sistema basta seguir os passos abaixo.
+- <a href="https://nodejs.org/en/" target="_blank"> Node <a/>
+- <a href="https://www.npmjs.com/get-npm" target="_blank"> NPM </a>
 
-```
-$ cd /camimho/do/projeto/bookstore
-$ npm install
+To get the whole system up, just follow the steps below.
+
+`` ``
+$ cd /path/bookstore/
+$ npm installation
 $ npm start
-```
+`` ``
 
-E acesse a url <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> e o sistema estara pronto pra uso.
+And go to a URL <a href="http://localhost:3000" target="_blank"> http: // localhost: 3000 </a> and the system is ready for use.
 
-### Sobre as tecnologias
+### About Technologies
 
-#### React
+#### To react
 
-O React (às vezes denominado React.js ou ReactJS) é uma biblioteca JavaScript de código aberto para criar interfaces de usuário. É mantido pelo Facebook, Instagram e uma comunidade de desenvolvedores individuais e outras empresas. De acordo com o serviço de análise de JavaScript Libscore, o React está sendo usado nos sites da Netflix, Imgur, Feedly, Airbnb, SeatGeek, HelloSign, Walmart e outros.
+React (sometimes called React.js or ReactJS) is an open source JavaScript library for creating user interfaces. It is maintained by Facebook, Instagram and a community of individual developers and other companies. According to the Libscore or React JavaScript analysis service is being used on the Netflix, Imgur, Feedly, Airbnb, SeatGeek, HelloSign, Walmart, and other websites.
 
 #### NPM
 
-NPM é o gerenciador de pacotes para Node.js . Foi criado em 2009 como um projeto de código aberto para ajudar os desenvolvedores de JavaScript a compartilhar facilmente módulos de código compactados.
+NPM is package manager for Node.js. It was created in 2009 as an open source project to help JavaScript developers easily share compressed code modules.
 
 #### Bootstrap
 
-Bootstrap é um framework web com código-fonte aberto para desenvolvimento de componentes de interface e front-end para sites e aplicações web usando HTML, CSS e JavaScript, baseado em modelos de design para a tipografia, melhorando a experiência do usuário em um site amigável e responsivo.
+Bootstrap is an open source web framework for developing front end and interface components for websites and web applications using HTML, CSS and JavaScript, based on typographic design templates, improving the user experience on a user-friendly website. and responsive.
